@@ -24,6 +24,20 @@ const results = items.forEach((item) => { // results is undefined
   )
 })
 
+const flatResults = items.flatMap((item) => {
+  return [
+    {
+      id: '3',
+      name: item.name,
+      },
+    {
+      id: '4',
+      name: item.name,
+        }
+      ]
+})
+
 console.log(items)
 console.log(results)
 console.log(newArray)
+console.log(flatResults)
