@@ -1,10 +1,10 @@
 import express from 'express'
-const app = express()
-const port = 3000
+import { testRouter } from './routes/test.route.js'
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+const app = express()
+const port = process.env.PORT || 3000
+
+app.use('/', testRouter)
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
