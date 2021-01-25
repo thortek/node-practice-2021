@@ -1,10 +1,12 @@
 import express from 'express'
-import { testRouter } from './routes/test.route.js'
+import { apiRouter } from './routes/api.route.js'
 
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 5000
 
-app.use('/', testRouter)
+app.use(express.static('public'))
+
+app.use('/api', apiRouter)
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
