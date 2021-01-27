@@ -2,14 +2,8 @@ import { Router } from 'express'
 
 export const apiRouter = Router()
 
-apiRouter.get('/', (req, res) => {
-    res.json({
-        status: 'awesome',
-        name: 'Thor',
-        strongestAvenger: true,
-        likes: [
-            'Hammers',
-            'Getting hammered'
-        ]
-    })
-})
+import { api, status } from '../controllers/api.controller.js'
+
+apiRouter.get('/', api)
+
+apiRouter.get('/status', status)
