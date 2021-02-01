@@ -2,6 +2,8 @@ import { Router } from 'express'
 
 export const productRouter = Router()
 
-import { product } from '../controllers/product.controller.js'
+import { postAddProduct, getAllProducts } from '../controllers/product.controller.js'
 
-productRouter.get('/', product)
+productRouter.post('/', postAddProduct)
+
+productRouter.get('/', getAllProducts)
