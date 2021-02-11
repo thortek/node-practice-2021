@@ -1,9 +1,14 @@
-import Product from '../models/local_product.js'
+import { Product } from '../models/product.js'
 
 export const postAddProduct = ((req, res) => {
-    const product = new Product(req.body.title)
+    const product = new Product({
+        title: req.body.title,
+        price: req.body.price,
+        description: req.body.description,
+        imageUrl: req.body.imageUrl,
+    })
     console.log(product)
-    product.save()
+    product.save() // save method is provided by Mongoose
     res.json(product)
 })
 
