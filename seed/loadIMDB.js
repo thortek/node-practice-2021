@@ -1,12 +1,14 @@
 import axios from "axios"
 import { Movie } from '../models/movie.js'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 const options = {
   method: 'GET',
   url: 'https://imdb8.p.rapidapi.com/auto-complete',
   params: {q: 'Thor'},
   headers: {
-    'x-rapidapi-key': 'f4810bc1e1msh8e5f44dd0f55ddfp107b05jsnc1c5efa46815',
+    'x-rapidapi-key': `${process.env.RAPIDAPI_KEY}`,
     'x-rapidapi-host': 'imdb8.p.rapidapi.com'
   }
 };
