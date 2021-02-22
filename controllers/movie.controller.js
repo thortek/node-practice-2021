@@ -1,15 +1,16 @@
-import { Product } from '../models/product.js'
+import { Movie } from '../models/movie.js'
 
-export const postAddProduct = ((req, res) => {
-    const product = new Product({
+export const addMovie = ((req, res) => {
+    const movie = new Movie({
         title: req.body.title,
-        price: req.body.price,
-        description: req.body.description,
-        imageUrl: req.body.imageUrl,
+        rank: req.body.rank,
+        image: req.body.image,
+        id: req.body.id,
+        year: req.body.year
     })
-    console.log(product)
-    product.save() // save method is provided by Mongoose
-    res.json(product)
+    console.log(movie)
+    movie.save() // save method is provided by Mongoose
+    res.json(movie)
 })
 
 /* export const getAllProducts = ((req, res) => {

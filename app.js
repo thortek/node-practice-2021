@@ -2,8 +2,11 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import { apiRouter } from './routes/api.route.js'
 import { productRouter } from './routes/product.route.js'
+import { movieRouter } from './routes/movie.route.js'
 import mongoose from 'mongoose'
 import * as dotenv from 'dotenv'
+
+mongoose.set('useFindAndModify', false);
 
 dotenv.config()
 
@@ -18,6 +21,8 @@ app.use(express.static('public'))
 app.use('/api', apiRouter)
 
 app.use('/product', productRouter)
+
+app.use('/movie', movieRouter)
 
 app.use((req, res, next) => {
     res.status(404).send('<h1>Page not found</h1>')
