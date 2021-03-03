@@ -15,7 +15,7 @@ const seedMongo = async () => {
 const options = {
   method: 'GET',
   url: 'https://imdb8.p.rapidapi.com/auto-complete',
-  params: {q: 'Thor'},
+  params: {q: 'Hulk'},
   headers: {
     'x-rapidapi-key': `${process.env.RAPIDAPI_KEY}`,
     'x-rapidapi-host': 'imdb8.p.rapidapi.com'

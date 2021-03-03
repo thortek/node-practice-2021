@@ -5,6 +5,7 @@ import { productRouter } from './routes/product.route.js'
 import { movieRouter } from './routes/movie.route.js'
 import mongoose from 'mongoose'
 import * as dotenv from 'dotenv'
+import cors from 'cors'
 
 mongoose.set('useFindAndModify', false);
 
@@ -14,7 +15,11 @@ const port = process.env.PORT || 5050
 
 const app = express()
 
+app.use(cors())
+
 app.use(bodyParser.urlencoded({extended: false})) // url-encoded !== form-data
+
+app.use(express.json())
 
 app.use(express.static('public'))
 

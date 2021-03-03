@@ -21,9 +21,12 @@ export const addMovie = ((req, res) => {
     .catch(err => console.log(err))
 }) */
 
-export const getProducts = async (req, res) => {
-    const products = await Product.find()
-    res.json(products)
+export const movies = async (req, res) => {
+    const movies = await Movie.find()
+    if (!movies) {
+        return res.status(400).json({Message: `No movies found`})
+    }
+    res.json(movies)
 }
 
 export const getProductById = async (req, res) => {
@@ -56,15 +59,15 @@ export const putEditProduct = async (req, res) => {
     }
 }
 
-export const deleteProduct = async (req, res) => {
-    const prodId = req.body.productId
+export const deleteMovie = async (req, res) => {
+    console.log(req.body)
+    const movieId = req.body.movieId
     try {
-        const deletedProduct = await Product.findByIdAndRemove(prodId)
-        if (!deletedProduct) {
-            return res.status(400).json({Message: `Product to delete not found.`})
+        const deletedMovie= await Movie.findByIdAndRemove(movieId)
+        if (!deletedMovie) {
+            return res.status(400).json({Message: `Movie to delete not found.`})
         }
-        console.log(`Deleted the product: ${deletedProduct}`)
-        //res.redirect(`/product`) // return all products
+        console.log(`Deleted the movie: ${deletedMovie}`)
         res.sendStatus(200) // a simple success
     } catch (err) {
         res.status(400).json({Message: `Invalid ID: ${err}`})

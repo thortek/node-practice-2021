@@ -9,11 +9,11 @@ const movieSchema = new Schema({
     },
     rank: {
         type: Number,
-        required: true
+        required: false
     },
     image: {
         type: Object,
-        required: true
+        required: false
     },
     id: {
         type: String,
@@ -21,7 +21,7 @@ const movieSchema = new Schema({
     },
     year: {
         type: String,
-        required: true
+        required: false
     }
 })
 
