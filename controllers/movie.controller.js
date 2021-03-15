@@ -13,14 +13,6 @@ export const addMovie = ((req, res) => {
     res.json(movie)
 })
 
-/* export const getAllProducts = ((req, res) => {
-    Product.find()
-        .then(products => {
-        res.json(products)
-        })
-    .catch(err => console.log(err))
-}) */
-
 export const movies = async (req, res) => {
     const movies = await Movie.find()
     if (!movies) {
@@ -29,13 +21,13 @@ export const movies = async (req, res) => {
     res.json(movies)
 }
 
-export const getProductById = async (req, res) => {
-    const prodId = req.body.productId
-    console.log(prodId)
+export const getMovieById = async (req, res) => {
+    const movieId = req.body.movieId
+    console.log(movieId)
     try {
-        const product = await Product.findById(prodId)
-        if (!product) {
-            return res.status(404).json({ Message: 'Product not Found' })
+        const movie = await Movie.findById(movieId)
+        if (!movie) {
+            return res.status(404).json({ Message: 'Movie not Found' })
         }
         res.json(product)
     } catch(err) {
@@ -43,24 +35,27 @@ export const getProductById = async (req, res) => {
     }
 }
 
-export const putEditProduct = async (req, res) => {
-    const prodId = req.body.productId
+export const updateMovie = async (req, res) => {
+    const movieId = req.body.data.movieId
     const updatedObj = {
-        title: req.body.title,
-        price: req.body.price, // typeof ? (if string then parsed by Mongoose, else number by body-parser)
-        description: req.body.description,
-        imageUrl: req.body.imageUrl,
+        title: req.body.data.title,
+        rank: req.body.data.rank,
+        year: req.body.data.year,
+        image: {
+            imageUrl: req.body.data.imageUrl,
+            height: req.body.data.height,
+            width: req.body.data.width,
+        }
     }
     try {
-        const product = await Product.findByIdAndUpdate(prodId, updatedObj, { new: true })
-        res.json(product)
+        const movie = await Movie.findByIdAndUpdate(movieId, updatedObj, { new: true })
+        res.status(200).json(movie)
     } catch (err) {
         res.status(400).json({Message: `Could not update: ${err}`})
     }
 }
 
 export const deleteMovie = async (req, res) => {
-    console.log(req.body)
     const movieId = req.body.movieId
     try {
         const deletedMovie= await Movie.findByIdAndRemove(movieId)
@@ -72,5 +67,4 @@ export const deleteMovie = async (req, res) => {
     } catch (err) {
         res.status(400).json({Message: `Invalid ID: ${err}`})
     }
-
 }

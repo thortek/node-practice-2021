@@ -13,7 +13,16 @@ const movieSchema = new Schema({
     },
     image: {
         type: Object,
-        required: false
+        required: false,
+        height: {
+            type: Number
+        },
+        imageUrl: {
+            type: String
+        },
+        width: {
+            type: Number
+        }
     },
     id: {
         type: String,

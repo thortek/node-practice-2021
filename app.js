@@ -1,5 +1,5 @@
 import express from 'express'
-import bodyParser from 'body-parser'
+//import bodyParser from 'body-parser'
 import { apiRouter } from './routes/api.route.js'
 import { productRouter } from './routes/product.route.js'
 import { movieRouter } from './routes/movie.route.js'
@@ -17,7 +17,7 @@ const app = express()
 
 app.use(cors())
 
-app.use(bodyParser.urlencoded({extended: false})) // url-encoded !== form-data
+app.use(express.urlencoded({extended: true})) // url-encoded !== form-data
 
 app.use(express.json())
 
